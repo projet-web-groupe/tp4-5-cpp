@@ -26,8 +26,14 @@ public:
 	//Methode d'affichage
 	void affiche(void) const;
 
+	//Autre methode
+	double operator[](int x);
+	Vecteur3D operator+(const Vecteur3D &v);
+	Vecteur3D operator*(const Vecteur3D &v);
+
 };
 
 bool operator==(const Vecteur3D &a, const Vecteur3D &b);
+Vecteur3D operator*(const double d, const Vecteur3D &v);
 
 #endif

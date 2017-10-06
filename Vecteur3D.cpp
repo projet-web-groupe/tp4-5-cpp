@@ -29,3 +29,27 @@ bool operator==(const Vecteur3D &a, const Vecteur3D &b){
 	return ((a.getX() - b.getX() <= err) && (a.getY() - b.getY() <= err) && (a.getZ() - b.getZ()) <= err) ;
 }
 
+double Vecteur3D::operator[](int n){
+	switch(n){
+		case 0:
+		return x;
+		case 1:
+		return y;
+		case 2:
+		return z;
+		default:
+		return 0;
+	}
+}
+
+Vecteur3D Vecteur3D::operator+(const Vecteur3D &v){
+    return Vecteur3D(x + v.getX(), y + v.getY(), z + v.getZ());
+}
+
+Vecteur3D Vecteur3D::operator*(const Vecteur3D &v){
+    return Vecteur3D(x * v.getX(), y * v.getY(), z * v.getZ());
+}
+
+Vecteur3D operator*(const double d, const Vecteur3D &v){
+    return Vecteur3D(d * v.getX(), d * v.getY(), d * v.getZ());
+}

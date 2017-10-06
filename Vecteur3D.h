@@ -4,8 +4,8 @@
 #include <string>
 
 class Vecteur3D {
-public:
 	double x, y, z;
+public:
 	
 	//Constructeurs :
 	Vecteur3D(
@@ -13,6 +13,15 @@ public:
 		double _y = 0, 
 		double _z = 0
 		);
+
+	//getters et setters
+	const double getX(void)const;
+	const double getY(void)const;
+	const double getZ(void)const;
+
+	void setX(double x);
+	void setY(double y);
+	void setZ(double z);
 
 	//Methode d'affichage
 	void affiche(void) const;

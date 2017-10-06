@@ -13,13 +13,13 @@ MobilePesant::MobilePesant(
 : Mobile(_position,_vitesse,_nom), masse(_masse) {}
 
 void MobilePesant::avance(const double dt){
-	position.x += dt * vitesse.x;
-	position.y += dt * vitesse.y;
-	position.z += dt * vitesse.z;
+	position.setX(position.getX() + dt * vitesse.getX());
+	position.setY(position.getY() + dt * vitesse.getY());
+	position.setZ(position.getZ() + dt * vitesse.getZ());
 	
-	vitesse.x += dt * g.x;
-	vitesse.y += dt * g.y;
-	vitesse.z += dt * g.z;
+	vitesse.setX(vitesse.getX() + dt * g.getX());
+	vitesse.setY(vitesse.getY() + dt * g.getY());
+	vitesse.setZ(vitesse.getZ() + dt * g.getZ());
 }
 
 void MobilePesant::affiche(void) const{

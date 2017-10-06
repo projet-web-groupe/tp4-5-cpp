@@ -111,7 +111,7 @@ bool Test::testMobile2(void){
 	double dt = 0;
 	double pas = 0.001;
 	m.affiche();
-	while(m.getPosition().z >= 0){
+	while(m.getPosition().getZ() >= 0){
 		m.avance(pas);
 		//if(m.getPosition().z >= 0)
 		dt += pas;
@@ -140,7 +140,7 @@ bool Test::testSimulation3(void){
 	s->afficheCorps();
 	std::cout << std::endl;
 
-	while(m1->getPosition().z >= 0){
+	while(m1->getPosition().getZ() >= 0){
 		s->simuler(pas);
 		//if(m1->getPosition().z >= 0)
 		dt += pas;

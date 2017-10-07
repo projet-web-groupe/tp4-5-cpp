@@ -26,7 +26,7 @@ void Vecteur3D::setZ(double _z){z = _z;}
 
 bool operator==(const Vecteur3D &a, const Vecteur3D &b){
 	double err = 0.00001;
-	return ((a.getX() - b.getX() <= err) && (a.getY() - b.getY() <= err) && (a.getZ() - b.getZ()) <= err) ;
+	return ((Vecteur3D::abs(a.getX() - b.getX()) <= err) && (Vecteur3D::abs(a.getY() - b.getY()) <= err) && (Vecteur3D::abs(a.getZ() - b.getZ()) <= err)) ;
 }
 
 double Vecteur3D::operator[](int n){
@@ -46,6 +46,13 @@ Vecteur3D Vecteur3D::operator+(const Vecteur3D &v){
     return Vecteur3D(x + v.getX(), y + v.getY(), z + v.getZ());
 }
 
+Vecteur3D Vecteur3D::operator+=(const Vecteur3D &v){
+    this->x += v.getX();
+    this->y += v.getY();
+    this->z += v.getZ();
+    return *this;
+}
+
 Vecteur3D Vecteur3D::operator*(const Vecteur3D &v){
     return Vecteur3D(x * v.getX(), y * v.getY(), z * v.getZ());
 }
@@ -53,3 +60,5 @@ Vecteur3D Vecteur3D::operator*(const Vecteur3D &v){
 Vecteur3D operator*(const double d, const Vecteur3D &v){
     return Vecteur3D(d * v.getX(), d * v.getY(), d * v.getZ());
 }
+
+double Vecteur3D::abs(double d){return ((d<0)?-d:d);}

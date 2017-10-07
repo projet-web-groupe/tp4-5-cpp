@@ -48,7 +48,8 @@ void Mobile::affiche(void) const{
 }
 
 void Mobile::avance(const double dt){
-	position.setX(position.getX() + dt * vitesse.getX());
+	/*position.setX(position.getX() + dt * vitesse.getX());
 	position.setY(position.getY() + dt * vitesse.getY());
-	position.setZ(position.getZ() + dt * vitesse.getZ());
+	position.setZ(position.getZ() + dt * vitesse.getZ());*/
+	position += dt * vitesse;
 }

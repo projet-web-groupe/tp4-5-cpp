@@ -29,7 +29,9 @@ public:
 	//Autre methode
 	double operator[](int x);
 	Vecteur3D operator+(const Vecteur3D &v);
+	Vecteur3D operator+=(const Vecteur3D &v);
 	Vecteur3D operator*(const Vecteur3D &v);
+	static double abs(double d);
 
 };
 

@@ -7,7 +7,7 @@ class Vecteur3D;
 class MobilePesant :public Mobile {
 	double masse;
 public:
-	static Vecteur3D g;
+	const Vecteur3D getGravite(void) const;
 	MobilePesant(
 		double masse,
 		Vecteur3D _position = Vecteur3D(),

@@ -3,8 +3,6 @@
 #include "Vecteur3D.h"
 #include <iostream>
 
-Vecteur3D MobilePesant::g = Vecteur3D(0,0,-9.81);
-
 MobilePesant::MobilePesant(
 	double _masse,
 	Vecteur3D _position, 
@@ -21,7 +19,7 @@ void MobilePesant::avance(const double dt){
 	/*vitesse.setX(vitesse.getX() + dt * g.getX());
 	vitesse.setY(vitesse.getY() + dt * g.getY());
 	vitesse.setZ(vitesse.getZ() + dt * g.getZ());*/
-	vitesse += dt * g;
+	vitesse += dt * getGravite();
 }
 
 void MobilePesant::affiche(void) const{
@@ -36,3 +34,7 @@ MobilePesant * MobilePesant::copie(void)const{
 }
 
 const double MobilePesant::getMasse(void){return masse;}
+
+const Vecteur3D MobilePesant::getGravite(void)const{
+	return position.gravite();
+}

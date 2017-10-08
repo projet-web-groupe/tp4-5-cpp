@@ -1,8 +1,9 @@
 #include "Vecteur3D.h"
 
 #include <iostream>
-#include <sstream>
 #include <string>
+#include <cmath>
+#include "Terre.h"
 
 //Constructeurs :
 Vecteur3D::Vecteur3D(
@@ -62,3 +63,7 @@ Vecteur3D operator*(const double d, const Vecteur3D &v){
 }
 
 double Vecteur3D::abs(double d){return ((d<0)?-d:d);}
+
+const Vecteur3D Vecteur3D::gravite() const{
+	return -(Terre::GM/sqrt(x*x+y*y+z*z)) * *this;
+}

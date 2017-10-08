@@ -125,6 +125,7 @@ double Test::abs(double d){return ((d<0)?-d:d);}
 
 bool Test::testSimulation3(void){
 	bool res = true;
+	double err = 0.005;
 	std::cout << "Test de la class Simulation :" <<std::endl;
 	double dt = 0;
 	double pas = 0.001;
@@ -140,10 +141,10 @@ bool Test::testSimulation3(void){
 	s->afficheCorps();
 	std::cout << std::endl;
 
-	while(m1->getPosition().z >= 0){
+	while(m1->getPosition().z >= 0 + err){
 		s->simuler(pas);
-		//if(m1->getPosition().z >= 0)
-		dt += pas;
+		if(m1->getPosition().z >= 0 + err)
+			dt += pas;
 	}
 	std::cout << "Affichage des Mobiles après la fin de la simulation :\n";
 	s->afficheCorps();
@@ -159,9 +160,9 @@ bool Test::testSimulation3(void){
 }
 
 bool Test::testSimulation4(void){
-
+	bool res = true;
 	Simulation *s = new Simulation();
-	Vecteur3D pos1(1,2,3), vit1(4,5,6),pos2(7,8,9),vit2(10,11,12);
+	Vecteur3D pos[] = (1,2,3), vit1(4,5,6),pos2(7,8,9),vit2(10,11,12);
 	double masse = 1;
 	std::string nom1("Mobile Pesant"),nom2("Mobile classique");
 	MobilePesant *m1 = new MobilePesant(masse,pos1,vit1,nom1);
@@ -172,14 +173,14 @@ bool Test::testSimulation4(void){
 
 	std::cout << "Affichage de la simulation :\n";
 	s->afficheCorps();
-	std::cout << "Copie puis destruction de la simulation...\n";
+	std::cout << "\nCopie puis destruction de la simulation...\n";
 	Simulation * s_copie = new Simulation(*s);
 
 	delete s;
-	std::cout << "Affichage de la copie de la simulation :\n";
-	s_copie->afficheCorps();
+	std::cout << "\nAffichage de la copie de la simulation :\n";
+	s_copie->afficheCorps():
 
 	delete s_copie;
 
-	return true;
+	return res;
 }

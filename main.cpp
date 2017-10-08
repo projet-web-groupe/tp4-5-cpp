@@ -3,7 +3,7 @@
 #include <iostream>
 
 int main(){
-	bool b = Test::testMobile2();
+	bool b = Test::testSimulation4();
 	if(b)
 		std::cout << "OK !!!" << std::endl;
 	else

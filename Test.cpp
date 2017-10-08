@@ -1,4 +1,3 @@
-	s->ajouterCorps(&m1);
 #include "Test.h"
 
 #include "Vecteur3D.h"
@@ -17,7 +16,7 @@ bool Test::testVecteur3D(void){
 	Vecteur3D v1(1,2,3), v2(3,2,1);
 	std::cout << "\nTest de l'opérateur [] :\nv1 =";
 	v1.affiche();
-	std::cout << "v1.x = " << v1[0] << ", v1.y = " << v1[1] << ", v1.z = " << v1[2] << "\nAutre valeur que 0-2 : " << v1[50] << std::endl;
+	std::cout << "v1[0] = " << v1[0] << ", v1[1] = " << v1[1] << ", v1[2] = " << v1[2] << "\nAutre valeur que 0-2 : " << v1[50] << std::endl;
 	if(res)
 		res = (v1[0] == v1.getX() && v1[1] == v1.getY() && v1[2] == v1.getZ());
 	else
@@ -40,11 +39,11 @@ bool Test::testVecteur3D(void){
 	std::cout << "v3 = 2.5 * v1\nv3 = ";
 	v3 = 2.5*v1;
 	v3.affiche();
-	/*
+	
 	if(res)
-		res = (Vecteur3D::abs(v3.getX() - 2.5*v1.getX()) < err && Vecteur3D::abs(v3.getY() - 2.5*v1.getY()) < err && Vecteur3D::abs(v3.getZ() - 2.5*v3.getZ()) < err);
+		res = (Vecteur3D::abs(v3.getX() - 2.5*v1.getX()) < err && Vecteur3D::abs(v3.getY() - 2.5*v1.getY()) < err && Vecteur3D::abs(v3.getZ() - 2.5*v1.getZ()) < err);
 	else
-		return res;*/
+		return res;
 
 	std::cout << "\nTest de l'operateur + entre Vecteur3D :\nv1 = ";
 	v1.affiche();

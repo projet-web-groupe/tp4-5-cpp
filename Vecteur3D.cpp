@@ -67,3 +67,7 @@ double Vecteur3D::abs(double d){return ((d<0)?-d:d);}
 const Vecteur3D Vecteur3D::gravite() const{
 	return  -Terre::GM*(1/(sqrt(x*x+y*y+z*z)*(x*x+y*y+z*z))) * (*this);
 }
+
+double Vecteur3D::distance(const Vecteur3D& v)const{
+	return sqrt((x-v.getX())*(x-v.getX()) + (y-v.getY())*(y-v.getY()) + (z-v.getZ())*(z-v.getZ()));
+}

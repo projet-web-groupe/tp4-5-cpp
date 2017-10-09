@@ -33,6 +33,7 @@ public:
 	Vecteur3D operator*(const Vecteur3D &v);
 	static double abs(double d);
 	const Vecteur3D gravite()const;
+	double distance(const Vecteur3D& v = Vecteur3D())const;
 
 };
 

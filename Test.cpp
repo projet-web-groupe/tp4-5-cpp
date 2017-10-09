@@ -4,7 +4,9 @@
 #include "Mobile.h"
 #include "MobilePesant.h"
 #include "Simulation.h"
+#include "Terre.h"
 #include <iostream>
+#include <cmath>
 #include <list>
 
 
@@ -68,5 +70,31 @@ bool Test::testVecteur3D(void){
 	v3.affiche();
 	if(res)
 		res = ((Vecteur3D::abs(v3.getX() - v1.getX() - v2.getX()) < err) && (Vecteur3D::abs(v3.getY() - v1.getY() - v2.getY()) < err) && (Vecteur3D::abs(v3.getZ() - v1.getZ() - v2.getZ()) < err));
+	return res;
+}
+
+bool Test::testTerre(void){
+	Vecteur3D v(0, Terre::RT, 0);
+	v.affiche();
+	std::cout << Terre::GM/Terre::RT << "\n";
+	v.gravite().affiche();
+	return true;
+}
+
+bool Test::testSattelite1(void){
+	bool res = true;
+	double h = 200000, dt = 0, pas = 0.0005;
+	double T = 2*M_PI*sqrt((Terre::RT + h)*(Terre::RT + h)*(Terre::RT + h)/Terre::GM);
+	double v = sqrt(Terre::GM/(Terre::RT + h));
+	MobilePesant *sat = new MobilePesant(1 ,Vecteur3D(0,Terre::RT+h,0), Vecteur3D(v,0,0));
+	Simulation s;
+	s.ajouterCorps(sat);
+	s.afficheCorps();
+	while(dt < T){
+		s.simuler(pas);
+		dt += pas;
+	}
+	s.afficheCorps();
+
 	return res;
 }

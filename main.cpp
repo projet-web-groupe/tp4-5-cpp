@@ -3,7 +3,7 @@
 #include <iostream>
 
 int main(){
-	bool b = Test::testVecteur3D();
+	bool b = Test::testSattelite1();
 	if(b)
 		std::cout << "OK !!!" << std::endl;
 	else

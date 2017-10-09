@@ -65,5 +65,5 @@ Vecteur3D operator*(const double d, const Vecteur3D &v){
 double Vecteur3D::abs(double d){return ((d<0)?-d:d);}
 
 const Vecteur3D Vecteur3D::gravite() const{
-	return -(Terre::GM/sqrt(x*x+y*y+z*z)) * *this;
+	return  -Terre::GM*(1/(sqrt(x*x+y*y+z*z)*(x*x+y*y+z*z))) * (*this);
 }

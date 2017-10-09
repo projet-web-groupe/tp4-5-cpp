@@ -14,8 +14,8 @@ void MobilePesant::avance(const double dt){
 	/*position.setX(position.getX() + dt * vitesse.getX());
 	position.setY(position.getY() + dt * vitesse.getY());
 	position.setZ(position.getZ() + dt * vitesse.getZ());*/
+	//position.affiche();
 	position += dt * vitesse;
-
 	/*vitesse.setX(vitesse.getX() + dt * g.getX());
 	vitesse.setY(vitesse.getY() + dt * g.getY());
 	vitesse.setZ(vitesse.getZ() + dt * g.getZ());*/
@@ -36,5 +36,6 @@ MobilePesant * MobilePesant::copie(void)const{
 const double MobilePesant::getMasse(void){return masse;}
 
 const Vecteur3D MobilePesant::getGravite(void)const{
+	//position.affiche();
 	return position.gravite();
 }

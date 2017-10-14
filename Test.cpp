@@ -113,7 +113,7 @@ bool Test::testMobile2(void){
 	double dt = 0;
 	double pas = 0.001;
 	m.affiche();
-	while(m.getPosition().getZ() >= Terre::RT){
+	while((m.getPosition())[2] >= Terre::RT){
 		m.avance(pas);
 		//if(m.getPosition().z >= 0)
 		dt += pas;
@@ -142,9 +142,9 @@ bool Test::testSimulation3(void){
 	s->afficheCorps();
 	std::cout << std::endl;
 
-	while(m1->getPosition().getZ() >= Terre::RT){
+	while(m1->getPosition()[2] >= Terre::RT){
 		s->simuler(pas);
-		if(m1->getPosition().getZ() >= Terre::RT)
+		if(m1->getPosition()[2] >= Terre::RT)
 			dt += pas;
 	}
 	std::cout << "Affichage des Mobiles après la fin de la simulation :\n";
@@ -196,7 +196,7 @@ bool Test::testVecteur3D(void){
 	v1.affiche();
 	std::cout << "v1[0] = " << v1[0] << ", v1[1] = " << v1[1] << ", v1[2] = " << v1[2] << "\nAutre valeur que 0-2 : " << v1[50] << std::endl;
 	if(res)
-		res = (v1[0] == v1.getX() && v1[1] == v1.getY() && v1[2] == v1.getZ());
+		res = (v1.getX() == v1[0] && v1.getY() == v1[1] && v1.getZ() == v1[2]);
 	else
 		return res;
 	
@@ -208,7 +208,7 @@ bool Test::testVecteur3D(void){
 	v3 = v1 * v2;
 	v3.affiche();
 	if(res)
-		res = (v3.getX() == v1.getX() * v2.getX() && v3.getY() == v1.getY() * v2.getY() && v3.getZ() == v1.getZ() * v2.getZ());
+		res = (v3[0] == v1[0] * v2[0] && v3[1] == v1[1] * v2[1] && v3[2] == v1[2] * v2[2]);
 	else
 		return res;
 	
@@ -219,7 +219,7 @@ bool Test::testVecteur3D(void){
 	v3.affiche();
 	
 	if(res)
-		res = (Vecteur3D::abs(v3.getX() - 2.5*v1.getX()) < err && Vecteur3D::abs(v3.getY() - 2.5*v1.getY()) < err && Vecteur3D::abs(v3.getZ() - 2.5*v1.getZ()) < err);
+		res = (Vecteur3D::abs(v3[0] - 2.5*v1[0]) < err && Vecteur3D::abs(v3[1] - 2.5*v1[1]) < err && Vecteur3D::abs(v3[2] - 2.5*v1[2]) < err);
 	else
 		return res;
 
@@ -232,7 +232,7 @@ bool Test::testVecteur3D(void){
 	v3.affiche();
 
 	if(res)
-		res = ((Vecteur3D::abs(v3.getX() - v1.getX() - v2.getX()) < err) && (Vecteur3D::abs(v3.getY() - v1.getY() - v2.getY()) < err) && (Vecteur3D::abs(v3.getZ() - v1.getZ() - v2.getZ()) < err));
+		res = ((Vecteur3D::abs(v3[0] - v1[0] - v2[0]) < err) && (Vecteur3D::abs(v3[1] - v1[1] - v2[1]) < err) && (Vecteur3D::abs(v3[2] - v1[2] - v2[2]) < err));
 	else
 		return res;
 	
@@ -245,16 +245,20 @@ bool Test::testVecteur3D(void){
 	std::cout << "v3 += v2\nv3 = ";
 	v3.affiche();
 	if(res)
-		res = ((Vecteur3D::abs(v3.getX() - v1.getX() - v2.getX()) < err) && (Vecteur3D::abs(v3.getY() - v1.getY() - v2.getY()) < err) && (Vecteur3D::abs(v3.getZ() - v1.getZ() - v2.getZ()) < err));
+		res = ((Vecteur3D::abs(v3[0] - v1[0] - v2[0]) < err) && (Vecteur3D::abs(v3[1] - v1[1] - v2[1]) < err) && (Vecteur3D::abs(v3[2] - v1[2] - v2[2]) < err));
 	return res;
 }
 
 bool Test::testTerre(void){
-	Vecteur3D v(0, Terre::RT, 0);
+	bool res = true;
+	std::cout << "Position initiale : ";
+	Vecteur3D v(0,Terre::RT,0);
 	v.affiche();
-	std::cout << Terre::GM/Terre::RT << "\n";
+	std::cout << "Gravité : ";
 	v.gravite().affiche();
-	return true;
+	if(res)
+		res = (Test::abs(v.gravite()[1] - (-9.81)) < 0.1);
+	return res;
 }
 
 bool Test::testSattelite1(void){
@@ -266,7 +270,6 @@ bool Test::testSattelite1(void){
 	Vecteur3D p_init(sat->getPosition());
 	Simulation s;
 	s.ajouterCorps(sat);
-	s.afficheCorps();
 	while(dt < T){
 		s.simuler(pas);
 		dt += pas;
@@ -277,6 +280,6 @@ bool Test::testSattelite1(void){
 	std::cout << "La durée de la simulation est de " << dt << "s soit "<< floor(dt/3600) <<"h"<<floor((dt-floor(dt/3600)*3600)/60)<<"m"<<dt-floor(dt/60)*60<<"s\n";
 	std::cout << "Le sattelite est a une distance de " << dist << " m de sa position initiale\n";
 	if(res)
-		res = (dist <= 1);
+		res = (dist <= 100);
 	return res;
 }

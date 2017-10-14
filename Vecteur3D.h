@@ -27,7 +27,7 @@ public:
 	void affiche(void) const;
 
 	//Autre methode
-	double operator[](int x);
+	double operator[](int x) const;
 	Vecteur3D operator+(const Vecteur3D &v);
 	Vecteur3D operator+=(const Vecteur3D &v);
 	Vecteur3D operator*(const Vecteur3D &v);

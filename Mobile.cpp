@@ -1,8 +1,9 @@
 #include "Mobile.h"
 
 #include "Vecteur3D.h"
+#include "Terre.h"
 #include <string>
-#include <sstream>
+#include <cmath>
 #include <iostream>
 
 //Constructeurs :

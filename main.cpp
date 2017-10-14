@@ -3,7 +3,7 @@
 #include <iostream>
 
 int main(){
-	bool b = Test::testSattelite1();
+	bool b = Test::testTerre();
 	if(b)
 		std::cout << "OK !!!" << std::endl;
 	else

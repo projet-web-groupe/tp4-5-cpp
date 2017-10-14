@@ -27,10 +27,10 @@ void Vecteur3D::setZ(double _z){z = _z;}
 
 bool operator==(const Vecteur3D &a, const Vecteur3D &b){
 	double err = 0.00001;
-	return ((Vecteur3D::abs(a.getX() - b.getX()) <= err) && (Vecteur3D::abs(a.getY() - b.getY()) <= err) && (Vecteur3D::abs(a.getZ() - b.getZ()) <= err)) ;
+	return ((Vecteur3D::abs(a[0] - b[0]) <= err) && (Vecteur3D::abs(a[1] - b[1]) <= err) && (Vecteur3D::abs(a[2] - b[2]) <= err)) ;
 }
 
-double Vecteur3D::operator[](int n){
+double Vecteur3D::operator[](int n)const{
 	switch(n){
 		case 0:
 		return x;
@@ -44,22 +44,22 @@ double Vecteur3D::operator[](int n){
 }
 
 Vecteur3D Vecteur3D::operator+(const Vecteur3D &v){
-    return Vecteur3D(x + v.getX(), y + v.getY(), z + v.getZ());
+	return Vecteur3D(x + v[0], y + v[1], z + v[2]);
 }
 
 Vecteur3D Vecteur3D::operator+=(const Vecteur3D &v){
-    this->x += v.getX();
-    this->y += v.getY();
-    this->z += v.getZ();
-    return *this;
+	this->x += v[0];
+	this->y += v[1];
+	this->z += v[2];
+	return *this;
 }
 
 Vecteur3D Vecteur3D::operator*(const Vecteur3D &v){
-    return Vecteur3D(x * v.getX(), y * v.getY(), z * v.getZ());
+	return Vecteur3D(x * v[0], y * v[1], z * v[2]);
 }
 
 Vecteur3D operator*(const double d, const Vecteur3D &v){
-    return Vecteur3D(d * v.getX(), d * v.getY(), d * v.getZ());
+	return Vecteur3D(d * v[0], d * v[1], d * v[2]);
 }
 
 double Vecteur3D::abs(double d){return ((d<0)?-d:d);}
@@ -69,5 +69,5 @@ const Vecteur3D Vecteur3D::gravite() const{
 }
 
 double Vecteur3D::distance(const Vecteur3D& v)const{
-	return sqrt((x-v.getX())*(x-v.getX()) + (y-v.getY())*(y-v.getY()) + (z-v.getZ())*(z-v.getZ()));
+	return sqrt((x-v[0])*(x-v[0]) + (y-v[1])*(y-v[1]) + (z-v[2])*(z-v[2]));
 }
